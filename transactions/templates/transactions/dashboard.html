@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Dashboard</h1>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Kirimlar</h2>
+                {% if incomes %}
+                    <ul class="list-group">
+                        {% for income in incomes %}
+                            <li class="list-group-item">
+                                <strong>{{ income.description }}</strong>: {{ income.amount }} so'm ({{ income.date }})
+                                <a href="{% url 'edit_transaction' income.id %}" class="btn btn-sm btn-primary">Tahrirlash</a>
+                                <a href="{% url 'delete_transaction' income.id %}" class="btn btn-sm btn-danger">O'chirish</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Hech qanday kirim mavjud emas.</p>
+                {% endif %}
+                <a href="{% url 'add_transaction' 'income' %}" class="btn btn-success mt-3">Kirim qo'shish</a>
+            </div>
+            <div class="col-md-6">
+                <h2>Chiqimlar</h2>
+                {% if expenses %}
+                    <ul class="list-group">
+                        {% for expense in expenses %}
+                            <li class="list-group-item">
+                                <strong>{{ expense.description }}</strong>: {{ expense.amount }} so'm ({{ expense.date }})
+                                <a href="{% url 'edit_transaction' expense.id %}" class="btn btn-sm btn-primary">Tahrirlash</a>
+                                <a href="{% url 'delete_transaction' expense.id %}" class="btn btn-sm btn-danger">O'chirish</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Hech qanday chiqim mavjud emas.</p>
+                {% endif %}
+                <a href="{% url 'add_transaction' 'expense' %}" class="btn btn-danger mt-3">Chiqim qo'shish</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

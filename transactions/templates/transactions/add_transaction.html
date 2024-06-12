@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if transaction_type == 'income' %}Kirim{% else %}Chiqim{% endif %} Qo'shish</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">{% if transaction_type == 'income' %}Kirim{% else %}Chiqim{% endif %} Qo'shish</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                {{ form.amount.label_tag }}
+                {{ form.amount }}
+            </div>
+            <button type="submit" class="btn btn-primary">Qo'shish</button>
+        </form>
+    </div>
+</body>
+</html>

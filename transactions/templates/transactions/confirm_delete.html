@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Transactionni O'chirish</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Transactionni O'chirish</h1>
+        <p>Haqiqatan ham "{{ transaction.description }}" transactionni o'chirishni istaysizmi?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">O'chirish</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Bekor qilish</a>
+        </form>
+    </div>
+</body>
+</html>
