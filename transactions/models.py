@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Transaction(models.Model):
+    """
+    Purpose: Represents a financial transaction (income or expense) for a user.
+    Attributes:
+        user: Foreign key linking the transaction to a specific user.
+        description: A brief description of the transaction.
+        amount: The amount of money involved in the transaction.
+        transaction_type: The type of transaction (either 'income' or 'expense').
+        date: The date and time when the transaction was created.
+    """
     TRANSACTION_TYPES = [
         ('income', 'Income'),
         ('expense', 'Expense'),
